@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
-|
+| 
 */
 
 Route::get('/', function () {
@@ -28,6 +28,15 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return 'Selamat Datang Di Contact';
 });
+
+
+Route::get('/siswa', function () {
+
+    $data_siswa = ['Rizky', 'Aldi', 'Rizal', 'Rizki', 'Rizal'];
+
+    return view('tampil', compact('data_siswa'));
+});
+
 
 // route parameter
 Route::get('/tes/{nama2}/{a}/{b}/{c}/{d}', function ($nama, $tl, $jk, $agama, $alamat) {
