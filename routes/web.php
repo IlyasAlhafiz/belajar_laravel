@@ -1,10 +1,24 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Models\Barang;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\SiswasController;
 use App\Http\Controllers\ppdbsController;
+use App\Http\Controllers\PenggunasController;
+use App\Http\Controllers\TeleponController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\CustomersController;
+
+use App\Http\Controllers\PenerbitsController;
+use App\Http\Controllers\GenresController;
+use App\Http\Controllers\BukusController;
+use App\Http\Controllers\PembelisController;
+use App\Http\Controllers\TransaksisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -143,6 +157,19 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// routes/web.php
+Route::get('auth', function () {
+    return view('auth.auth');
+})->name('auth');
+
+Route::get('/chevron-login', 'AuthController@chevronLogin')->name('chevron-login');
+Route::get('/chevron-register', 'AuthController@chevronRegister')->name('chevron-register');
+
+Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
 //CRUD
 Route::resource('siswa', SiswasController::class); 
 
@@ -150,3 +177,23 @@ Route::resource('siswa', SiswasController::class);
 
 // latihan 2
 Route::resource('ppdb', ppdbsController::class);
+
+// One to One
+Route::resource('pengguna', PenggunasController::class);
+Route::resource('telepon', TeleponController::class);
+
+// Has many
+Route::resource('kategori', KategoriController::class);
+Route::resource('produk', ProdukController::class);
+
+// Has many To many
+Route::resource('product', ProductsController::class);
+Route::resource('order', OrdersController::class);
+Route::resource('customer', CustomersController::class);
+
+// Has So Many
+Route::resource('penerbit', PenerbitsController::class);
+Route::resource('genre', GenresController::class);
+Route::resource('buku', BukusController::class);
+Route::resource('pembeli', PembelisController::class);
+Route::resource('transaksi', TransaksisController::class);

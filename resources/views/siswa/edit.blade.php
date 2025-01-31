@@ -34,6 +34,11 @@
                                 <option value="XI RPL 3" {{ isset($siswa) && $siswa->kelas == 'XI RPL 3' ? 'selected' : '' }}>XI RPL 3</option>
                             </select>
                         </div>
+                        <div class="form-group mb-3">
+                            <label for="nama">Gambar</label>
+                            <img src="{{ asset('/images/siswa/' . $siswa->cover) }}" width="100">
+                            <input type="file" class="form-control" id="cover" name="cover" required>
+                        </div>
                         <button type="submit" class="btn btn-primary" name="save">{{ isset($siswa) ? 'Update' : 'Save' }}</button>
                     </form>
                 </div>
